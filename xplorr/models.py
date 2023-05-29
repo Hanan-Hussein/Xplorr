@@ -40,3 +40,19 @@ class Goals(models.Model):
         self.update(goalName=goal)
 
 
+class Profile(models.Model):
+    """
+    user's profile
+    """
+    user = models.OneToOneField(
+        User, related_name="users", on_delete=models.CASCADE)
+    # goals = models.ForeignKey(Goals, related_name="goals", on_delete=models.CASCADE, null=True)
+    profile_image = CloudinaryField("profile", blank=True, null=True)
+
+    @classmethod
+    def __str__(self):
+        return f"user:{self.user}: course:{self.goals}"
+
+    @classmethod
+    def save_profile(cls, profile):
+        cls.save(profile)
