@@ -29,6 +29,14 @@ class City(models.Model):
     name = models.CharField(max_length=100)
     country = models.ForeignKey(Country, on_delete=models.CASCADE)
 
+    @classmethod
+    def __str__(self):
+        return f"city:{self.name}: country:{self.country}"
+
+    @classmethod
+    def save_city(cls, city):
+        cls.save(city)
+
 
 class Goals(models.Model):
     """
@@ -93,6 +101,14 @@ class Accomodation(models.Model):
     city = models.ForeignKey(City, on_delete=models.CASCADE)
     price = models.IntegerField()
 
+    @classmethod
+    def __str__(self):
+        return f"Accomodation:{self:name}: location:{self.location}: city:{self.city}: price:{self.price}"
+
+    @classmethod
+    def save_accomodation(cls, accomodation):
+        cls.save(accomodation)
+
 
 class Sightseeing(models.Model):
     """
@@ -102,3 +118,11 @@ class Sightseeing(models.Model):
     location = models.CharField(max_length=100)
     city = models.ForeignKey(City, on_delete=models.CASCADE)
     price = models.IntegerField()
+
+    @classmethod
+    def __str__(self):
+        return f"Sight:{self.name}: location:{self.location}: city:{self.city}: price:{self.price}"
+
+    @classmethod
+    def save_sightseeing(cls, sightseeing):
+        cls.save(sightseeing)
