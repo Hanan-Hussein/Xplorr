@@ -5,6 +5,31 @@ from cloudinary.models import CloudinaryField
 # Create your models here.
 
 
+class Country(models.Model):
+    """
+    country
+    """
+    name = models.CharField(max_length=100)
+    iso = models.CharField(max_length=50)
+    code = models.IntegerField()
+
+    @classmethod
+    def __str__(self):
+        return f"country:{self.name}: iso: {self.iso}: code:{self.code}"
+
+    @classmethod
+    def save_country(cls, country):
+        cls.save(country)
+
+
+class City(models.Model):
+    """
+    city
+    """
+    name = models.CharField(max_length=100)
+    country = models.ForeignKey(Country, on_delete=models.CASCADE)
+
+
 class Goals(models.Model):
     """
     goals that are tied to a user or group of users
@@ -14,6 +39,7 @@ class Goals(models.Model):
     image = CloudinaryField("image", blank=True, null=True)
     user = models.ForeignKey(
         User, related_name="users_goal", on_delete=models.CASCADE)
+    city = models.ForeignKey(City, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"Name: {self.goalName}: moneySaved:{self.moneySaved}: image:{self.image}: user:{self.user}"
