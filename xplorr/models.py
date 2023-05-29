@@ -91,5 +91,14 @@ class Accomodation(models.Model):
     name = models.CharField(max_length=100)
     location = models.CharField(max_length=100)
     city = models.ForeignKey(City, on_delete=models.CASCADE)
-    price =  models.IntegerField()
+    price = models.IntegerField()
 
+
+class Sightseeing(models.Model):
+    """
+    Sightseeing in a city
+    """
+    name = models.CharField(max_length=100)
+    location = models.CharField(max_length=100)
+    city = models.ForeignKey(City, on_delete=models.CASCADE)
+    price = models.IntegerField()
