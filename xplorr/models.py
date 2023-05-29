@@ -82,3 +82,14 @@ class Profile(models.Model):
     @classmethod
     def save_profile(cls, profile):
         cls.save(profile)
+
+
+class Accomodation(models.Model):
+    """
+    Accomodation
+    """
+    name = models.CharField(max_length=100)
+    location = models.CharField(max_length=100)
+    city = models.ForeignKey(City, on_delete=models.CASCADE)
+    price =  models.IntegerField()
+
