@@ -8,7 +8,7 @@ class CountrySerializer(serializers.ModelSerializer):
 
 class CitySerializer(serializers.ModelSerializer):
     class Meta:
-        model = Country
+        model = City
         fields = '__all__'
 
 class GoalsSerializer(serializers.ModelSerializer):
