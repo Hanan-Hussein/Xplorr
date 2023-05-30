@@ -28,4 +28,3 @@ all = [(Country,countryAdmin),(City,cityAdmin),
 
 for i in all:
     admin.site.register(i[0],i[1])
-# admin.site.register(Country, countryAdmin)

@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+import cloudinary
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -37,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'xplorr',
+    'rest_framework',
     'django.contrib.staticfiles',
 ]
 
@@ -99,7 +101,11 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
+cloudinary.config(
+    cloud_name='hanancodes',
+    api_key='818526811121834',
+    api_secret='gHgIrS1Pf1zJ2yFIqYyycWoWYe4'
+)
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
