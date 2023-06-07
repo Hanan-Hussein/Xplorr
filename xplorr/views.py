@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .models import Country, City, Goals, Profile, Accomodation, Sightseeing
-from .serializer import CountrySerializer, CitySerializer, GoalsSerializer, AccomodationSerializer,SightseeingSeriializer
+from .models import Country, City, Goals, Profile, Accomodation, Sightseeing, Category
+from .serializer import CountrySerializer, CitySerializer, GoalsSerializer, AccomodationSerializer,SightseeingSeriializer,CategoriesSerializer
 # Create your views here.
 
 #ALl countries
@@ -37,4 +37,11 @@ class allSightSeeing(APIView):
     def get(Self, request):
         sight = Sightseeing.objects.all()
         serializer = CountrySerializer(sight, many=True)
+        return Response(serializer.data)
+
+#get all categories
+class allCategories(APIView):
+    def get(self, request):
+        categories = Category.objects.all()
+        serializer = CategoriesSerializer(categories, many=True)
         return Response(serializer.data)

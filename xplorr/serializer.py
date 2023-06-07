@@ -1,4 +1,4 @@
-from .models import Country, City, Goals, Profile, Accomodation, Sightseeing
+from .models import Country, City, Goals, Profile, Accomodation, Sightseeing, Category
 from rest_framework import serializers
 
 class CountrySerializer(serializers.ModelSerializer):
@@ -24,4 +24,9 @@ class AccomodationSerializer(serializers.ModelSerializer):
 class SightseeingSeriializer(serializers.ModelSerializer):
     class Meta:
         model = Sightseeing
+        fields = '__all__'
+
+class CategoriesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
         fields = '__all__'

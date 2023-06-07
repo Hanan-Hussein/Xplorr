@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Country, City, Goals, Profile, Accomodation, Sightseeing
+from .models import Country, City, Goals, Profile, Accomodation, Sightseeing, Category
 # Register your models here.
 
 class countryAdmin(admin.ModelAdmin):
@@ -23,8 +23,11 @@ class sightSeeAdmin(admin.ModelAdmin):
     list_display = ("name", "location", "city", "price")
     list_filter =("price", "location")
 
+class categoryAdmin(admin.ModelAdmin):
+    list_display = ("name", "category_image")
+
 all = [(Country,countryAdmin),(City,cityAdmin),
-(Goals,goalsAdmin),(Profile,profileAdmin),(Accomodation,accomodationAdmin),(Sightseeing, sightSeeAdmin)]
+(Goals,goalsAdmin),(Profile,profileAdmin),(Accomodation,accomodationAdmin),(Sightseeing, sightSeeAdmin),(Category, categoryAdmin)]
 
 for i in all:
     admin.site.register(i[0],i[1])

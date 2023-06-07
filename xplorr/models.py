@@ -91,6 +91,13 @@ class Profile(models.Model):
     def save_profile(cls, profile):
         cls.save(profile)
 
+class Category(models.Model):
+    """
+    category
+    """
+    name = models.CharField(max_length=100)
+    category_image = CloudinaryField("category_image", blank=True, null=True)
+
 
 class Accomodation(models.Model):
     """
@@ -99,11 +106,12 @@ class Accomodation(models.Model):
     name = models.CharField(max_length=100)
     location = models.CharField(max_length=100)
     city = models.ForeignKey(City, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, default="")
     price = models.IntegerField()
 
     @classmethod
     def __str__(self):
-        return f"Accomodation:{self:name}: location:{self.location}: city:{self.city}: price:{self.price}"
+        return f"Accomodation:{self:name}: location:{self.location}: city:{self.city}: price:{self.price}: category:{self.category}"
 
     @classmethod
     def save_accomodation(cls, accomodation):
@@ -118,10 +126,11 @@ class Sightseeing(models.Model):
     location = models.CharField(max_length=100)
     city = models.ForeignKey(City, on_delete=models.CASCADE)
     price = models.IntegerField()
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, default="")
 
     @classmethod
     def __str__(self):
-        return f"Sight:{self.name}: location:{self.location}: city:{self.city}: price:{self.price}"
+        return f"Sight:{self.name}: location:{self.location}: city:{self.city}: price:{self.price}: category:{self.category}"
 
     @classmethod
     def save_sightseeing(cls, sightseeing):
